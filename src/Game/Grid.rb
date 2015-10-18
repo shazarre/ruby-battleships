@@ -1,4 +1,5 @@
 module Game
+  # Represents game grid
   class Grid
     attr_reader :size, :ships
 
@@ -8,6 +9,7 @@ module Game
       @ships = []
     end
 
+    # Checks if at given coordinates there is any ship.
     def ship?(coordinates)
       ship_at(coordinates) { |ship|
         return true
@@ -16,6 +18,9 @@ module Game
       false
     end
 
+    # Adds ship to grid, performs checking if the ship does not:
+    # - overlap with other
+    # - go out of bounds
     def add_ship(ship)
       Utils::Calculator.ship_coordinates(ship).each do |coordinate|
         raise Game::Exceptions::CoordinatesOutOfGrid unless includes?(coordinate)
@@ -25,6 +30,7 @@ module Game
       @ships << ship
     end
 
+    # If a ship at given coordinates is found, yields it.
     def ship_at(coordinates)
       for ship in @ships
         if ship.orientation == Game::Ship::Orientation::HORIZONTAL
@@ -39,6 +45,7 @@ module Game
       end
     end
 
+    # Checks if given coordinates are not out of bound.
     def includes?(coordinates)
       raise ArgumentError unless coordinates.is_a? Coordinates
 

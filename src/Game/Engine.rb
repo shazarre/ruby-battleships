@@ -1,4 +1,5 @@
 module Game
+  # Handles game logic.
   class Engine
     attr_reader :grid, :counter
 
@@ -16,12 +17,19 @@ module Game
       @hits = []
     end
 
+    # Returns if game is over.
     def over?
       !@grid.ships.map { |ship|
         ship.sunk?
       }.uniq.include?(false)
     end
 
+    # On given coordinates performs action. Returns class constants:
+    # - RESPONSE_OUT_OF_BOUNDS: when given coordinates don't fit into grid
+    # - RESPONSE_DUPLICATE: when given shoot has already been made
+    # - RESPONSE_SUNK: when enemy ship has just been sunk
+    # - RESPONSE_HIT: when enemy ship has just been hit (but not sunk)
+    # - RESPONSE_MISS: when given shoot missed any ships
     def hit(coordinates)
       return RESPONSE_OUT_OF_BOUNDS unless @grid.includes?(coordinates)
       return RESPONSE_DUPLICATE if hit?(coordinates)

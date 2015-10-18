@@ -1,4 +1,5 @@
 module UserInterface
+  # Grid renderer.
   class Renderer
     SQUARE_HIT = " X "
     SQUARE_UNKNOWN = " . "
@@ -14,6 +15,7 @@ module UserInterface
       @missed << coordinates
     end
 
+    # Renders current grid state.
     def render(reveal = false)
       alphabet = ("A".."Z").to_a
       print SQUARE_EMPTY

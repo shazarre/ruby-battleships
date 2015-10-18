@@ -1,4 +1,5 @@
 module Utils
+  # Utility class to calculate ship - coordinates relations.
   class Calculator
 
     # Calculates segment index for given ship based on passed coordinates

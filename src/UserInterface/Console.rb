@@ -1,4 +1,5 @@
 module UserInterface
+  # Provides CLI-based interface.
   class Console
     MESSAGE_DUPLICATE = "You've already made that hit."
     MESSAGE_HIT = "You hit enemy vessel."
@@ -16,6 +17,7 @@ module UserInterface
       @engine = engine
     end
 
+    # Runs console-based interaction.
     def run
       loop do
         puts
