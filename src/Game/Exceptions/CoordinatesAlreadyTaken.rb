@@ -1,6 +1,6 @@
 module Game
   module Exceptions
-    class CoordinatesAlreadyTaken < Exception
+    class CoordinatesAlreadyTaken < StandardError
 
     end
   end

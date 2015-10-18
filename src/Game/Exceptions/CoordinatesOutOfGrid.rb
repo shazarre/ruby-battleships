@@ -1,6 +1,6 @@
 module Game
   module Exceptions
-    class CoordinatesOutOfGrid < Exception
+    class CoordinatesOutOfGrid < StandardError
 
     end
   end

@@ -9,7 +9,7 @@ module Game
     RESPONSE_OUT_OF_BOUNDS = 'out_of_bounds'
 
     def initialize(grid)
-      throw ArgumentError unless grid.is_a? Game::Grid
+      raise ArgumentError unless grid.is_a? Game::Grid
 
       @grid = grid
       @counter = 0

@@ -8,8 +8,8 @@ module UserInterface
     MESSAGE_OUT_OF_BOUNDS = "Requested coordinates are out of bounds. Please try again."
 
     def initialize(engine, renderer)
-      throw ArgumentError unless engine.is_a? Game::Engine
-      throw ArgumentError unless renderer.is_a? UserInterface::Renderer
+      raise ArgumentError unless engine.is_a? Game::Engine
+      raise ArgumentError unless renderer.is_a? UserInterface::Renderer
 
       @reveal = false
       @renderer = renderer

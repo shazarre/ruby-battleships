@@ -9,28 +9,29 @@ require './src/UserInterface/Renderer'
 require './src/UserInterface/Console'
 require './src/Utils/Calculator'
 
-grid = Game::Grid.new(10)
+grid_size = 10
+grid = Game::Grid.new(grid_size)
 engine = Game::Engine.new(grid)
 
-# TODO Randomize ship generation
-grid.add_ship(Game::Ship.new(
- 5,
- Game::Ship::Orientation::HORIZONTAL,
- Game::Grid::Coordinates.new(0, 0)
-))
+sizes = [5, 4, 4]
 
-grid.add_ship(Game::Ship.new(
-  4,
-  Game::Ship::Orientation::VERTICAL,
-  Game::Grid::Coordinates.new(0, 2)
-))
-
-
-grid.add_ship(Game::Ship.new(
-  4,
-  Game::Ship::Orientation::HORIZONTAL,
-  Game::Grid::Coordinates.new(6, 6)
-))
+while sizes.length > 0
+  begin
+    grid.add_ship(
+      Game::Ship.new(
+        sizes.first,
+        Game::Ship::Orientation.all[rand(0..1)],
+        Game::Grid::Coordinates.new(
+            rand(0..(grid_size - 1)),
+            rand(0..(grid_size - 1))
+        )
+      )
+    )
+    sizes.shift
+  rescue Game::Exceptions::CoordinatesAlreadyTaken, Game::Exceptions::CoordinatesOutOfGrid
+    # just continue
+  end
+end
 
 UserInterface::Console.new(
   engine,

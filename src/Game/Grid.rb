@@ -3,7 +3,7 @@ module Game
     attr_reader :size, :ships
 
     def initialize(size)
-      throw ArgumentError unless size.is_a? Integer
+      raise ArgumentError unless size.is_a? Integer
       @size = size
       @ships = []
     end
@@ -18,8 +18,8 @@ module Game
 
     def add_ship(ship)
       Utils::Calculator.ship_coordinates(ship).each do |coordinate|
-        throw Game::Exceptions::CoordinatesOutOfGrid unless includes?(coordinate)
-        throw Game::Exceptions::CoordinatesAlreadyTaken if ship?(coordinate)
+        raise Game::Exceptions::CoordinatesOutOfGrid unless includes?(coordinate)
+        raise Game::Exceptions::CoordinatesAlreadyTaken if ship?(coordinate)
       end
 
       @ships << ship
@@ -40,7 +40,7 @@ module Game
     end
 
     def includes?(coordinates)
-      throw ArgumentError unless coordinates.is_a? Coordinates
+      raise ArgumentError unless coordinates.is_a? Coordinates
 
       coordinates.x < self.size && coordinates.y < self.size
     end

@@ -4,8 +4,8 @@ module Game
       attr_reader :x, :y
 
       def initialize(x, y)
-        throw ArgumentError unless x.is_a?(Integer) && y.is_a?(Integer)
-        throw RangeError if x < 0 || y < y
+        raise ArgumentError unless x.is_a?(Integer) && y.is_a?(Integer)
+        raise RangeError if x < 0 || y < y
         @x, @y = x, y
       end
 
